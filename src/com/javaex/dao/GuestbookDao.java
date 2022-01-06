@@ -71,15 +71,15 @@ public class GuestbookDao {
 			rs= pstmt.executeQuery();
 		    
 			while(rs.next()) {           
-            	int no= rs.getInt("no"); 
-            	String name= rs.getString("name");
-            	String password= rs.getString("password");
-            	String content= rs.getString("content");
-            	String regDate= rs.getString("reg_date");
-            	
-            	GuestbookVo vo= new GuestbookVo(no, name, password, content, regDate);
-            	gbList.add(vo);
-            }
+				int no= rs.getInt("no"); 
+				String name= rs.getString("name");
+				String password= rs.getString("password");
+				String content= rs.getString("content");
+				String regDate= rs.getString("reg_date");
+				
+				GuestbookVo vo= new GuestbookVo(no, name, password, content, regDate);
+				gbList.add(vo);
+			}
 
 		} catch (SQLException e) {
 		    System.out.println("error:" + e);
