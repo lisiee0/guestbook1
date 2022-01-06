@@ -22,7 +22,7 @@ public class GuestbookDao {
 	private String pw= "webdb";
 	
 	
-	private void getConnection() {	
+	private void getConnection() {
 		try {
 			Class.forName(driver);
 			conn = DriverManager.getConnection(url, id, pw);

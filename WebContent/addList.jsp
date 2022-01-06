@@ -1,5 +1,22 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<%@ page import="java.util.List" %>
+<%@ page import="com.javaex.dao.GuestbookDao" %>
+<%@ page import="com.javaex.vo.GuestbookVo" %>
+
+
+<%
+	// Dao 메모리에 올리기
+	GuestbookDao gbDao= new GuestbookDao();
+	
+	// guestbookList 가져오기
+	List<GuestbookVo> gbList= gbDao.getList();
+	
+	// test
+	System.out.println(gbList.toString());
+
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
