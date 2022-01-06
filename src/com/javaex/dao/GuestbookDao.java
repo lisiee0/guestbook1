@@ -34,6 +34,7 @@ public class GuestbookDao {
 		}   
 	}
 	
+	
 	private void close() {
 	    try {
 	        if (rs != null) {
