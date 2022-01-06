@@ -89,4 +89,53 @@ public class GuestbookDao {
 		
 		return gbList;
 	}
+	
+	
+	public void guestDelete(int no) {
+		this.getConnection();
+
+		try {
+			String query= "";
+			query += " delete from guestbook ";
+			query += " where	   no= ? ";
+			
+		    pstmt= conn.prepareStatement(query);
+		    
+		    pstmt.setInt(1, no);
+		    
+		    int count= pstmt.executeUpdate();
+		    
+		    System.out.println("["+count+"건 삭제되었습니다.]");
+		    
+		} catch (SQLException e) {
+		    System.out.println("error:" + e);
+		}
+		this.close();
+	}
+	
+	
+	public void guestInsert(GuestbookVo vo) {
+		
+		this.getConnection();
+
+		try {
+			String query= "";
+			query += " insert into guestbook ";
+			query += " values(seq_guestbook_no.nextval, ?, ?, ?, sysdate) ";
+		
+		    pstmt= conn.prepareStatement(query);
+		    
+		    pstmt.setString(1, vo.getName()); // name
+		    pstmt.setString(2, vo.getPassword()); // password
+		    pstmt.setString(3, vo.getContent()); // content
+
+		    int count= pstmt.executeUpdate();	    
+		    		   	    
+		    System.out.println("["+count+"건 등록되었습니다.]");
+		        	    
+		} catch (SQLException e) {
+		    System.out.println("error:" + e);
+		} 
+		this.close();
+	}
 }
