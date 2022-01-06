@@ -138,4 +138,44 @@ public class GuestbookDao {
 		} 
 		this.close();
 	}
+	
+	
+	public GuestbookVo getGuest(int num) {
+		GuestbookVo vo= null;
+		
+		this.getConnection();
+		
+		try {
+			String query= "";
+			query += " select   no, "; 
+			query += "          name, ";
+			query += "          password, ";
+			query += "          content, ";
+			query += "          to_char(reg_date, 'YYYY-MM-DD HH:MI:SS') reg_date ";
+			query += " from     guestbook ";
+			query += " where    no= ? ";
+
+			pstmt= conn.prepareStatement(query);
+			
+			pstmt.setInt(1, num);
+			
+			rs= pstmt.executeQuery();
+			
+			while(rs.next()) {           
+            	int no= rs.getInt("no"); 
+            	String name= rs.getString("name");
+            	String password= rs.getString("password");
+            	String content= rs.getString("content");
+            	String regDate= rs.getString("reg_date");
+            	
+            	vo= new GuestbookVo(no, name, password, content, regDate);
+            }
+
+		} catch (SQLException e) {
+		    System.out.println("error:" + e);
+		}	
+		this.close();
+
+		return vo;
+	}
 }
